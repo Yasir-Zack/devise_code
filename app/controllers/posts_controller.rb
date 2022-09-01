@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     end
   
     def create
+    authorize @post
     @post = Post.new(post_params)
     if @post.save
       redirect_to @post
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
     def destroy
       authorize @post
       @post.destroy
-      redirect_to root_path
+      redirect_to posts_path
     end
   
     def update
