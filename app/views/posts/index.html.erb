@@ -4,4 +4,5 @@
   <h2><%= post.title %></h2>
   <div><%= truncate(post.body, :length => 35) %></div>
   <%= link_to "Read Post", post %>
-<% end %><br />
+  <%= link_to "sign out", destroy_user_session_path, method: :delete %><br>
+<% end %>
