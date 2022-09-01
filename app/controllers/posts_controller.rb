@@ -11,10 +11,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       redirect_to @post
-    else  namespace :admin do
-      resources :students
-     end
-   
+    else
       render 'new'
     end
     end
