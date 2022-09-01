@@ -2,9 +2,5 @@
 <% @posts.each do |post| %> 
   <h2><%= post.title %></h2>
   <div><%= truncate(post.body, :length => 35) %></div>
-
   <%= link_to "Read Post", post %>
-<% end %>
-<%= link_to "sign In", new_user_session_path, method: :create %><br><br />
-<%= link_to "Edit User", edit_user_registration_path, method: :edit %>
-<%= link_to "sign out", destroy_user_session_path, method: :delete %>  
+<% end %><br />
