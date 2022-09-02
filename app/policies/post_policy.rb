@@ -3,7 +3,7 @@ class PostPolicy < ApplicationPolicy
     true
   end
   def update?
-    user.present?
+    return true if user.present? && user.id == record.user_id
   end
   def create?
     user.present?
