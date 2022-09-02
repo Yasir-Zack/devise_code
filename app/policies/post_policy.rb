@@ -9,7 +9,7 @@ class PostPolicy < ApplicationPolicy
     user.present?
   end
   def destroy?
-    user.present?
+    return true if user.present? && user.id == record.user_id
   end
   def new?
     user.present?

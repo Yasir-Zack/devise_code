@@ -9,15 +9,21 @@ class PostsController < ApplicationController
     end
   
     def create
-    @post = Post.new(post_params)
-    authorize @post
-    if @post.save
-      redirect_to @post
-    else
-      render 'new'
+      @post = Post.new(post_params)
+      @post.user = current_user
+      authorize @post
+
+      respond_to do |format|
+        if @post.save
+          format.html { redirect_to @post, notice: 'Post was successfully created.' }
+          format.json { render :show, status: :created, location: @post }
+        else
+          format.html { render :new }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
+      end
     end
-    end
-    
+
     def show
     end
   
@@ -27,13 +33,17 @@ class PostsController < ApplicationController
     def destroy
       authorize @post
       @post.destroy
-      redirect_to posts_path
+      respond_to do |format|
+        format.html { redirect_to posts_path, notice: 'Post was successfully Deleted.' }
+        format.json { head :no_content }
+      end
+      # redirect_to posts_path
     end
   
     def update
       authorize @post
       if @post.update(post_params)
-        redirect_to @post
+        redirect_to @post, notice: 'Post was successfully update'
         else
           render 'edit'
       end    
