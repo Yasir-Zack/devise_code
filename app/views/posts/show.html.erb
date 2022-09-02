@@ -1,7 +1,7 @@
-<h1><%= @post.title %></h1>
+<h1> Title ::</h1><h2><%= @post.title %></h2>
 <div>
-  <%= @post.body %>
-</div>
+  <h3> Description ::</h3><%= @post.body %>
+</div><br><br>
 <%= link_to "Edit Post",edit_post_path(@post)%><br>
 <%= link_to "Delete Post", post_path(@post), method: :delete, data: { confirm: "Are You Sure to Delete ?"} %><br>
 <%= link_to "sign out", destroy_user_session_path, method: :delete %><br>
