@@ -10,8 +10,11 @@
   </head>
   
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <% if user_signed_in?%>
+    <h1> Mak your<%= link_to "New Post",new_post_path %>  </h1>
+    <%end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
